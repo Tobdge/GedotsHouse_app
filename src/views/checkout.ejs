@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - GedotsHouse</title>
+    <link rel="stylesheet" href="/css/store.css">
+    <style>
+        .checkout-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        .checkout-form, .checkout-summary {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+        .input-epic {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid var(--bg-gray-200);
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="epic-navbar">
+    <div class="nav-mega-container">
+        <a href="/" class="epic-logo">
+            <div class="logo-symbol">🏠</div>
+            <div class="logo-text">
+                <h1>GedotsHouse</h1>
+                <span class="logo-tagline">Smart Home Premium</span>
+            </div>
+        </a>
+    </div>
+</nav>
+
+<div class="checkout-container">
+
+    <h1 class="checkout-title">Finalizar Compra</h1>
+
+    <% if (items.length === 0) { %>
+        <p>No tienes productos en el carrito.</p>
+        <a href="/" class="btn-epic-primary">Ir a la tienda</a>
+    <% } else { %>
+
+    <div class="checkout-grid">
+
+        <!-- FORMULARIO -->
+        <form class="checkout-form" action="/checkout/process" method="POST">
+
+            <h2>Datos del Cliente</h2>
+
+            <label>Email *</label>
+            <input class="input-epic" type="email" name="customer_email" value="<%= user.email %>" required>
+
+            <label>Teléfono *</label>
+            <input class="input-epic" type="text" name="customer_phone" required>
+
+            <hr><h2>Dirección de Envío</h2>
+
+            <label>Nombre del destinatario *</label>
+            <input class="input-epic" type="text" name="shipping_recipient" required>
+
+            <label>Teléfono *</label>
+            <input class="input-epic" type="text" name="shipping_phone" required>
+
+            <label>Calle *</label>
+            <input class="input-epic" type="text" name="shipping_street" required>
+
+            <label>Ciudad *</label>
+            <input class="input-epic" type="text" name="shipping_city" required>
+
+            <label>Estado *</label>
+            <input class="input-epic" type="text" name="shipping_state" required>
+
+            <label>Código Postal *</label>
+            <input class="input-epic" type="text" name="shipping_postal_code" required>
+
+            <label>País *</label>
+            <input class="input-epic" type="text" name="shipping_country" value="México" required>
+
+            <hr><h2>Facturación (opcional)</h2>
+
+            <label>Nombre</label>
+            <input class="input-epic" type="text" name="billing_recipient">
+
+            <label>Teléfono</label>
+            <input class="input-epic" type="text" name="billing_phone">
+
+            <label>Calle</label>
+            <input class="input-epic" type="text" name="billing_street">
+
+            <label>Ciudad</label>
+            <input class="input-epic" type="text" name="billing_city">
+
+            <label>Estado</label>
+            <input class="input-epic" type="text" name="billing_state">
+
+            <label>Código Postal</label>
+            <input class="input-epic" type="text" name="billing_postal_code">
+
+            <label>País</label>
+            <input class="input-epic" type="text" name="billing_country">
+
+            <hr><h2>Método de Pago</h2>
+
+            <select name="payment_method" class="input-epic" required>
+                <option value="credit_card">Tarjeta de Crédito</option>
+                <option value="debit_card">Tarjeta de Débito</option>
+                <option value="paypal">PayPal</option>
+                <option value="bank_transfer">Transferencia Bancaria</option>
+                <option value="cash_on_delivery">Pago Contra Entrega</option>
+            </select>
+
+            <button class="btn-epic-primary" style="margin-top:20px;width:100%;">
+                💳 Realizar Pago
+            </button>
+
+        </form>
+
+        <!-- RESUMEN -->
+        <div class="checkout-summary">
+            <h2>Resumen</h2>
+
+            <ul>
+                <% items.forEach(i => { %>
+                <li>
+                    <strong><%= i.name %></strong><br>
+                    <%= i.quantity %> × $<%= i.price %>
+                </li>
+                <% }) %>
+            </ul>
+
+            <hr>
+
+            <p>Subtotal: $<%= subtotal.toFixed(2) %></p>
+            <p>IVA (16%): $<%= taxAmount.toFixed(2) %></p>
+
+            <h3>Total: $<%= total.toFixed(2) %></h3>
+        </div>
+
+    </div>
+
+    <% } %>
+
+</div>
+
+</body>
+</html>

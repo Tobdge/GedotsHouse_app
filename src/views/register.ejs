@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - TuEmpresa</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+    
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">✨</div>
+                <h2 class="auth-title">Crear cuenta</h2>
+                <p class="auth-subtitle">Únete a nuestra plataforma</p>
+            </div>
+
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label" for="name">Nombre completo</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">👤</span>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="Tu nombre" 
+                            required
+                            autofocus>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Correo electrónico</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">📧</span>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="tu@email.com" 
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Contraseña</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">🔒</span>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Mínimo 8 caracteres" 
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="confirm_password">Confirmar contraseña</label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">🔐</span>
+                        <input 
+                            type="password" 
+                            id="confirm_password" 
+                            name="confirm_password" 
+                            class="form-input" 
+                            placeholder="Repite tu contraseña" 
+                            required>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" class="custom-checkbox" required>
+                    <label for="terms" style="color: #4a5568; font-size: 14px;">
+                        Acepto los <a href="/terminos" class="auth-link">términos y condiciones</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">Crear cuenta</button>
+            </form>
+
+            <div class="auth-footer">
+                ¿Ya tienes cuenta? <a href="/login" class="auth-link">Inicia sesión</a>
+            </div>
+        </div>
+    </div>
+<script>
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
+    const confirm = document.querySelector("#confirm_password").value;
+
+    if (password !== confirm) {
+        alert("Las contraseñas no coinciden");
+        return;
+    }
+
+    const res = await fetch("/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+    alert(data.msg);
+
+    if (res.ok) {
+        window.location.href = "/login";
+    }
+});
+</script>
+
+</body>
+</html>

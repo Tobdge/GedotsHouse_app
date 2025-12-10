@@ -1,23 +1,39 @@
 {
   "name": "nodee",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicación base Node.js + Express + MySQL que incluye conexión mediante middleware, creación de usuario propio de base de datos y estructura modular para apliación.",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-myconnection": "^1.0.4",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
     "mysql": "^2.18.1",
+    "mysql2": "^3.15.3",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
-  }
+    "nodemon": "^3.1.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tobdge/GedotsHouse_app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tobdge/GedotsHouse_app/issues"
+  },
+  "homepage": "https://github.com/Tobdge/GedotsHouse_app#readme"
 }

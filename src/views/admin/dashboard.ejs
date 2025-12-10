@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GedotsHouse Admin</title>
+    <link rel="stylesheet" href="/css/admin-panel.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<%- include("../partials/admin_header", { 
+    user,
+    active: "dashboard",
+    pageTitle: "Dashboard",
+    showAddButton: true,
+    addButtonText: "Nuevo Producto",
+    addButtonLink: "/admin/products/create"
+}) %>
+
+<div class="admin-content">
+
+    <!-- ===============================
+            CARDS
+    =============================== -->
+    <div class="stats-grid">
+        <div class="stat-card primary">
+            <div class="stat-header"><div class="stat-icon">💰</div></div>
+            <div class="stat-body">
+                <div class="stat-label">Ventas Totales</div>
+                <div class="stat-value">$<%= ventas.toLocaleString("es-MX") %></div>
+            </div>
+            <div class="stat-footer">Ingresos acumulados</div>
+        </div>
+
+        <div class="stat-card success">
+            <div class="stat-header"><div class="stat-icon">📦</div></div>
+            <div class="stat-body">
+                <div class="stat-label">Órdenes</div>
+                <div class="stat-value"><%= ordenes %></div>
+            </div>
+            <div class="stat-footer">Total generadas</div>
+        </div>
+
+        <div class="stat-card warning">
+            <div class="stat-header"><div class="stat-icon">👥</div></div>
+            <div class="stat-body">
+                <div class="stat-label">Clientes</div>
+                <div class="stat-value"><%= clientes %></div>
+            </div>
+            <div class="stat-footer">Usuarios registrados</div>
+        </div>
+
+        <div class="stat-card danger">
+            <div class="stat-header"><div class="stat-icon">🏷️</div></div>
+            <div class="stat-body">
+                <div class="stat-label">Productos</div>
+                <div class="stat-value">
+                    <%= productos %> <span class="stat-value-small">activos</span>
+                </div>
+            </div>
+            <div class="stat-footer"><%= stock_bajo %> con stock bajo</div>
+        </div>
+    </div>
+
+    <!-- ===============================
+            GRÁFICOS
+    =============================== -->
+    <div class="charts-grid">
+        <div class="chart-container">
+            <h3 class="chart-title">📊 Ventas Mensuales</h3>
+            <canvas id="salesChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3 class="chart-title">🔥 Top Categorías</h3>
+            <canvas id="categoriesChart"></canvas>
+        </div>
+    </div>
+
+    <!-- ===============================
+            TABLAS
+    =============================== -->
+    <div class="lists-grid">
+
+        <!-- Órdenes recientes -->
+        <div class="content-card">
+            <div class="card-header"><h3>🛒 Órdenes Recientes</h3></div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Orden</th>
+                            <th>Email</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% ultimasOrdenes.forEach(o => { %>
+                        <tr>
+                            <td>#<%= o.order_number %></td>
+                            <td><%= o.customer_email %></td>
+                            <td>$<%= o.total_amount.toLocaleString("es-MX") %></td>
+                            <td><%= o.status %></td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Más vendidos -->
+        <div class="content-card">
+            <div class="card-header"><h3>🏆 Productos Más Vendidos</h3></div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Ventas</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% productosPopulares.forEach(p => { %>
+                        <tr>
+                            <td>
+                                <div class="table-product-cell">
+                                    <img src="<%= p.image_url %>" class="product-img">
+                                    <div class="product-info">
+                                        <h4><%= p.name %></h4>
+                                        <p>SKU: <%= p.sku %></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><%= p.vendidos %></td>
+                            <td><%= p.stock_quantity %> unidades</td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===============================
+        SCRIPTS
+=============================== -->
+<%- include("../partials/admin_footer", {
+    scripts: `
+<script>
+const meses = JSON.parse(\`${JSON.stringify(ventasMes.map(v => v.mes))}\`);
+const ventasTotales = JSON.parse(\`${JSON.stringify(ventasMes.map(v => v.total))}\`);
+
+new Chart(document.getElementById("salesChart"), {
+    type: 'line',
+    data: { labels: meses, datasets: [{ label: "Ventas", data: ventasTotales }] }
+});
+
+const categorias = JSON.parse(\`${JSON.stringify(topCategorias.map(c => c.categoria))}\`);
+const categoriasCantidad = JSON.parse(\`${JSON.stringify(topCategorias.map(c => c.total))}\`);
+
+new Chart(document.getElementById("categoriesChart"), {
+    type: 'doughnut',
+    data: { labels: categorias, datasets: [{ data: categoriasCantidad }] }
+});
+</script>
+`
+}) %>

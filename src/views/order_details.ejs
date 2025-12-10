@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden #<%= order.id %> - GedotsHouse</title>
+    <link rel="stylesheet" href="/css/store.css">
+</head>
+<body>
+
+<!-- NAVBAR ÉPICA -->
+<nav class="epic-navbar">
+    <div class="nav-mega-container">
+        <a href="/" class="epic-logo">
+            <div class="logo-symbol">🏠</div>
+            <div class="logo-text">
+                <h1>GedotsHouse</h1>
+                <span class="logo-tagline">Premium Smart Home</span>
+            </div>
+        </a>
+
+        <div></div>
+
+        <div class="nav-actions-epic">
+            <a href="/account" class="btn-epic-primary">Mi Cuenta</a>
+            <a href="/" class="btn-epic-primary">Tienda</a>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE -->
+<section class="epic-cart-page">
+    <div class="cart-mega-container" style="grid-template-columns: 1fr 420px;">
+
+        <!-- =============================
+             IZQUIERDA — PRODUCTOS
+        ============================== -->
+        <div class="cart-items-section-epic">
+
+            <div class="cart-header-epic">
+                <h1 class="cart-title-epic">
+                    <span class="cart-icon-epic">📦</span>
+                    Detalles de la Orden
+                </h1>
+
+                <p class="cart-subtitle">
+                    Orden #<%= order.id %> — <%= order.created_at.toLocaleString("es-MX") %>
+                </p>
+            </div>
+
+            <div class="cart-items-list-epic">
+
+                <% items.forEach(item => { %>
+
+                <div class="cart-item-epic">
+
+                    <!-- Imagen -->
+                    <div class="cart-item-image-epic">
+                        <% if (item.imagen) { %>
+                            <img src="<%= item.imagen %>" alt="<%= item.product_name %>">
+                        <% } else { %>
+                            <div class="placeholder-img">📦</div>
+                        <% } %>
+                    </div>
+
+                    <!-- Detalles -->
+                    <div class="cart-item-details-epic">
+
+                        <div class="item-header-epic">
+                            <div>
+                                <h3 class="item-name-epic"><%= item.product_name %></h3>
+
+                                <% if (item.product_sku) { %>
+                                    <p class="item-sku-epic">SKU: <%= item.product_sku %></p>
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <div class="item-actions-row">
+
+                            <div class="price-display-epic">
+                                <span class="current-price-epic">
+                                    $<%= item.unit_price.toLocaleString("es-MX") %>
+                                </span>
+                            </div>
+
+                            <div class="quantity-controls-epic" style="pointer-events:none; opacity:0.6;">
+                                <div class="qty-display-epic"><%= item.quantity %></div>
+                            </div>
+
+                            <div class="subtotal-display-epic">
+                                <div class="subtotal-label-epic">Subtotal</div>
+                                <div class="subtotal-amount-epic">
+                                    $<%= item.subtotal.toLocaleString("es-MX") %>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <% }) %>
+
+            </div>
+
+        </div>
+
+        <!-- =============================
+             DERECHA — RESUMEN
+        ============================== -->
+        <div class="cart-summary-epic">
+
+            <h2 class="summary-title-epic">Resumen de la Orden</h2>
+
+            <div class="summary-rows">
+
+                <div class="summary-row">
+                    <span>Estado del Pedido:</span>
+                    <span class="summary-value">
+                        <%= order.status.toUpperCase() %>
+                    </span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Pago:</span>
+                    <span class="summary-value">
+                        <%= order.payment_status.toUpperCase() %>
+                    </span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span class="summary-value">
+                        $<%= order.subtotal.toLocaleString("es-MX") %>
+                    </span>
+                </div>
+
+                <div class="summary-row">
+                    <span>IVA (16%):</span>
+                    <span class="summary-value">
+                        $<%= order.tax_amount.toLocaleString("es-MX") %>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="summary-total-epic">
+                <span class="total-label-epic">Total:</span>
+                <span class="total-amount-epic">
+                    $<%= order.total_amount.toLocaleString("es-MX") %>
+                </span>
+            </div>
+
+            <a href="/account" class="btn-checkout-epic">← Regresar a Mi Cuenta</a>
+
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

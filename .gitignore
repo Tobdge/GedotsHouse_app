@@ -1,4 +1,16 @@
 node_modules/
 .env
 .DS_Store
-*.log
+npm-debug.log
+package-lock.json
+
+# Archivos del IDE
+.vscode/
+.idea/
+
+# Archivos de MySQL Workbench
+*.mwb.bak
+*.bak
+
+# Archivos ZIP
+*.zip

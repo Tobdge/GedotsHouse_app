@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="form-page">
+
+    <div class="form-card">
+        <h1 class="form-title">Editar Usuario #<%= user.id %></h1>
+
+        <form action="/editar/<%= user.id %>" method="POST">
+            <div class="form-group">
+                <label class="form-label" for="email">Correo electrónico</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input" 
+                    value="<%= user.email %>" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="is_active">Estado del usuario</label>
+                <select id="is_active" name="is_active" class="form-select">
+                    <option value="1" <%= user.is_active ? "selected" : "" %>>Activo</option>
+                    <option value="0" <%= !user.is_active ? "selected" : "" %>>Inactivo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    <small style="color: #718096;">Creado el: <%= user.created_at.toLocaleString() %></small>
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <a href="/" class="btn-back">← Volver</a>
+                <button type="submit" class="btn-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

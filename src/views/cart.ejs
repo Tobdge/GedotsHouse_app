@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - GedotsHouse</title>
+
+    <link rel="stylesheet" href="/css/store.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+<!-- NAVBAR ÉPICA 100% COMPATIBLE -->
+<nav class="epic-navbar" id="mainNav">
+    <div class="nav-mega-container">
+
+        <!-- LOGO -->
+        <a href="/" class="epic-logo">
+            <div class="logo-symbol">🏠</div>
+            <div class="logo-text">
+                <h1>GedotsHouse</h1>
+                <span class="logo-tagline">Premium Smart Home</span>
+            </div>
+        </a>
+
+        <div></div>
+
+        <div class="nav-actions-epic">
+
+            <a href="/" class="btn-epic-primary">
+                ← Seguir Comprando
+            </a>
+
+            <% if (user) { %>
+                <div class="user-menu">
+                    <span class="user-greeting">
+                        Hola, <strong><%= user.email.split("@")[0] %></strong>
+                    </span>
+                    <button onclick="logout()" class="btn-epic-primary">Cerrar Sesión</button>
+                </div>
+            <% } else { %>
+                <a href="/login" class="btn-epic-primary">Iniciar Sesión</a>
+            <% } %>
+
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================
+     ESTADO: CARRITO VACÍO
+============================================ -->
+<% if (!items || items.length === 0) { %>
+
+<section class="epic-cart-page">
+    <div class="empty-cart-epic">
+        <div class="empty-icon-epic">🛒</div>
+        <h2>Tu carrito está vacío</h2>
+        <p>Aún no has agregado productos.</p>
+
+        <a href="/" class="btn-hero-primary">Explorar Productos</a>
+    </div>
+</section>
+
+<% } else { %>
+
+<!-- ============================================
+     CARRITO CON PRODUCTOS
+============================================ -->
+<section class="epic-cart-page">
+
+    <div class="cart-mega-container">
+
+        <!-- =============================
+             LISTA DE PRODUCTOS
+        ============================== -->
+        <div class="cart-items-section-epic">
+
+            <div class="cart-header-epic">
+                <h1 class="cart-title-epic">
+                    <span class="cart-icon-epic">🛒</span>
+                    Carrito de Compras
+                </h1>
+
+                <p class="cart-subtitle">
+                    <%= items.length %> <%= items.length === 1 ? "producto" : "productos" %>
+                </p>
+            </div>
+
+            <div class="cart-items-list-epic">
+
+                <% items.forEach(item => { %>
+
+                <div class="cart-item-epic" data-product-id="<%= item.id %>">
+
+                    <!-- Imagen -->
+                    <div class="cart-item-image-epic">
+
+                        <% if (item.imagen) { %>
+                            <img src="<%= item.imagen %>" alt="<%= item.nombre %>">
+                        <% } else { %>
+                            <div class="placeholder-img">📦</div>
+                        <% } %>
+
+                        <% if (item.stock < 10) { %>
+                            <div class="stock-indicator">
+                                ⚠️ Quedan <%= item.stock %>
+                            </div>
+                        <% } %>
+
+                    </div>
+
+                    <!-- DETALLES -->
+                    <div class="cart-item-details-epic">
+
+                        <div class="item-header-epic">
+
+                            <div>
+                                <% if (item.category) { %>
+                                    <span class="item-category-epic"><%= item.category %></span>
+                                <% } %>
+
+                                <h3 class="item-name-epic"><%= item.nombre %></h3>
+
+                                <% if (item.sku) { %>
+                                    <p class="item-sku-epic">SKU: <%= item.sku %></p>
+                                <% } %>
+                            </div>
+
+                            <button class="btn-remove-epic"
+                                onclick="removeItem('<%= item.id %>')">
+                                ✕
+                            </button>
+
+                        </div>
+
+                        <div class="item-actions-row">
+
+                            <div class="price-display-epic">
+                                <span class="current-price-epic">
+                                    $<%= item.precioFijo.toLocaleString("es-MX") %> 
+                                    <% if (item.precioActual !== item.precioFijo) { %>
+                                        <span class="price-warning">
+                                            (actual: $<%= item.precioActual.toLocaleString("es-MX") %>)
+                                        </span>
+                                    <% } %>
+                                </span>
+                            </div>
+
+                            <!-- CANTIDAD -->
+                            <div class="quantity-controls-epic">
+
+                                <button 
+                                class="qty-btn-epic"
+                                onclick="updateQuantity(<%= item.id %>, <%= item.cantidad - 1 %>)"
+                                <%= item.cantidad <= 1 ? "disabled" : "" %>>
+                                –
+                                </button>
+
+                                <div class="qty-display-epic"><%= item.cantidad %></div>
+
+                                <button 
+                                class="qty-btn-epic"
+                                onclick="updateQuantity(<%= item.id %>, <%= item.cantidad + 1 %>)"
+                                <%= item.cantidad >= item.stock ? "disabled" : "" %>>
+                                +
+                                </button>
+
+                            </div>
+
+                            <!-- SUBTOTAL -->
+                            <div class="subtotal-display-epic">
+                                <div class="subtotal-label-epic">Subtotal</div>
+                                <div class="subtotal-amount-epic">
+                                    $<%= (item.precioFijo * item.cantidad).toLocaleString("es-MX") %>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <% }) %>
+
+            </div>
+
+        </div>
+
+        <!-- =============================
+             RESUMEN
+        ============================== -->
+        <div class="cart-summary-epic">
+
+            <h2 class="summary-title-epic">Resumen de Compra</h2>
+
+            <div class="summary-rows">
+
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span class="summary-value">
+                        $<%= subtotal.toLocaleString("es-MX") %>
+                    </span>
+                </div>
+
+                <% if (discount > 0) { %>
+                <div class="summary-row discount-row">
+                    <span>Descuento:</span>
+                    <span class="summary-value">
+                        -$<%= discount.toLocaleString("es-MX") %>
+                    </span>
+                </div>
+                <% } %>
+
+                <div class="summary-row">
+                    <span>IVA (16%):</span>
+                    <span class="summary-value">
+                        $<%= tax.toLocaleString("es-MX") %>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="summary-total-epic">
+                <span class="total-label-epic">Total:</span>
+                <span class="total-amount-epic">
+                    $<%= total.toLocaleString("es-MX") %>
+                </span>
+            </div>
+
+            <button class="btn-checkout-epic" onclick="proceedToCheckout()">
+                Proceder al Pago
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<% } %>
+
+<!-- LOADING -->
+<div id="loading-overlay" class="loading-overlay-epic" style="display:none;">
+    <div class="spinner-epic"></div>
+    <p class="loading-text">Procesando...</p>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+async function logout() {
+    await fetch("/auth/logout", { method: "POST" });
+    window.location.href = "/login";
+}
+
+async function updateQuantity(productId, quantity) {
+    productId = Number(productId);
+    quantity = Number(quantity);
+
+    if (quantity < 1) return;
+    showLoading();
+
+    await fetch("/cart/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId, quantity })
+    });
+
+    location.reload();
+}
+async function removeItem(id) {
+    if (!confirm("¿Eliminar producto del carrito?")) return;
+
+    showLoading();
+
+    await fetch("/cart/remove", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId: id })
+    });
+
+    location.reload();
+}
+
+function proceedToCheckout() {
+    showLoading();
+    window.location.href = "/checkout";
+}
+
+function showLoading() {
+    document.getElementById("loading-overlay").style.display = "flex";
+}
+</script>
+
+</body>
+</html>

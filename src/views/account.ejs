@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta - GedotsHouse</title>
+
+    <link rel="stylesheet" href="/css/store.css">
+</head>
+<body>
+
+<!-- NAVBAR ÉPICA -->
+<nav class="epic-navbar" id="mainNav">
+    <div class="nav-mega-container">
+
+        <a href="/" class="epic-logo">
+            <div class="logo-symbol">🏠</div>
+            <div class="logo-text">
+                <h1>GedotsHouse</h1>
+                <span class="logo-tagline">Premium Smart Home</span>
+            </div>
+        </a>
+
+        <div></div>
+
+        <div class="nav-actions-epic">
+            <a href="/" class="btn-epic-primary">🏬 Tienda</a>
+            <button onclick="logout()" class="btn-epic-primary">Cerrar Sesión</button>
+        </div>
+    </div>
+</nav>
+
+<section class="epic-cart-page" style="padding-top:4rem;">
+    <div class="cart-mega-container" style="grid-template-columns: 320px 1fr;">
+
+        <!-- =============================
+             MENÚ LATERAL (Cuenta)
+        ============================== -->
+        <aside class="cart-summary-epic" style="position:relative;">
+            <h2 class="summary-title-epic" style="font-size:1.6rem;">Mi Cuenta</h2>
+
+            <div class="summary-rows">
+                <button class="btn-checkout-epic" onclick="showSection('info')">
+                    Información Personal
+                </button>
+
+                <button class="btn-checkout-epic" onclick="showSection('edit')">
+                    Editar Información
+                </button>
+
+                <button class="btn-checkout-epic" onclick="showSection('password')">
+                    Cambiar Contraseña
+                </button>
+
+                <button class="btn-checkout-epic" onclick="showSection('address')">
+                    Dirección de Envío
+                </button>
+
+                <button class="btn-checkout-epic" onclick="showSection('orders')">
+                    Mis Órdenes
+                </button>
+            </div>
+
+            <button class="btn-epic-primary" onclick="logout()">
+                Cerrar Sesión
+            </button>
+        </aside>
+
+        <!-- =============================
+             CONTENIDO PRINCIPAL
+        ============================== -->
+        <div class="cart-items-section-epic" style="padding:3rem;">
+
+            <!-- =============================
+                 Info del Usuario
+            ============================== -->
+            <div id="section-info" class="account-section">
+                <h1 class="cart-title-epic">Información Personal</h1>
+
+                <p><strong>Nombre:</strong> <%= user.name || "Sin nombre" %></p>
+                <p><strong>Email:</strong> <%= user.email %></p>
+                <p><strong>Rol:</strong> <%= user.role %></p>
+
+                <hr class="mt-8">
+
+                <button class="btn-hero-primary mt-8" onclick="showSection('edit')">Editar Información</button>
+            </div>
+
+            <!-- =============================
+                 Editar Información
+            ============================== -->
+            <div id="section-edit" class="account-section hidden">
+                <h1 class="cart-title-epic">Editar Información</h1>
+
+                <form action="/account/update" method="POST" class="form-epic">
+
+                    <label>Nombre:</label>
+                    <input type="text" name="name" class="search-input-epic"
+                        value="<%= user.name || '' %>" required>
+
+                    <label>Email:</label>
+                    <input type="email" name="email" class="search-input-epic"
+                        value="<%= user.email %>" required>
+
+                    <button class="btn-hero-primary mt-8">Guardar Cambios</button>
+                </form>
+            </div>
+
+            <!-- =============================
+                 Cambiar contraseña
+            ============================== -->
+            <div id="section-password" class="account-section hidden">
+                <h1 class="cart-title-epic">Cambiar Contraseña</h1>
+
+                <form action="/account/change-password" method="POST" class="form-epic">
+
+                    <label>Contraseña Actual:</label>
+                    <input type="password" name="currentPassword" class="search-input-epic" required>
+
+                    <label>Nueva Contraseña:</label>
+                    <input type="password" name="newPassword" class="search-input-epic" required>
+
+                    <label>Confirmar Nueva Contraseña:</label>
+                    <input type="password" name="confirmPassword" class="search-input-epic" required>
+
+                    <button class="btn-hero-primary mt-8">Cambiar Contraseña</button>
+                </form>
+            </div>
+
+            <!-- =============================
+                 Dirección
+            ============================== -->
+            <div id="section-address" class="account-section hidden">
+                <h1 class="cart-title-epic">Dirección de Envío</h1>
+
+                <form action="/account/address" method="POST" class="form-epic">
+
+                    <label>Calle y Número:</label>
+                    <input type="text" name="street" class="search-input-epic"
+                        value="<%= user.address_street || '' %>">
+
+                    <label>Ciudad:</label>
+                    <input type="text" name="city" class="search-input-epic"
+                        value="<%= user.address_city || '' %>">
+
+                    <label>Estado:</label>
+                    <input type="text" name="state" class="search-input-epic"
+                        value="<%= user.address_state || '' %>">
+
+                    <label>Código Postal:</label>
+                    <input type="text" name="zip" class="search-input-epic"
+                        value="<%= user.address_zip || '' %>">
+
+                    <button class="btn-hero-primary mt-8">Guardar Dirección</button>
+                </form>
+            </div>
+
+            <!-- =============================
+                 Historial de Órdenes
+            ============================== -->
+            <div id="section-orders" class="account-section hidden">
+                <h1 class="cart-title-epic">Mis Órdenes</h1>
+
+                <% if (!orders || orders.length === 0) { %>
+                    <p class="text-secondary mt-8">No tienes órdenes todavía.</p>
+
+                <% } else { %>
+                    <div class="products-grid-epic">
+                        <% orders.forEach(order => { %>
+
+                            <article class="product-card-epic">
+                                <div class="product-info-epic">
+                                    <h3 class="product-name-epic">
+                                        Orden <%= order.order_number %>
+                                    </h3>
+                                    <p class="product-description-epic">
+                                        Total: $<%= order.total_amount.toLocaleString("es-MX") %><br>
+                                        Fecha: <%= order.created_at %>
+                                    </p>
+                                    <a href="/orders/<%= order.id %>" class="btn-hero-secondary">
+                                        Ver Detalles
+                                    </a>
+                                </div>
+                            </article>
+
+                        <% }) %>
+                    </div>
+                <% } %>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+function showSection(id) {
+    document.querySelectorAll(".account-section").forEach(sec => sec.classList.add("hidden"));
+    document.getElementById("section-" + id).classList.remove("hidden");
+}
+
+async function logout() {
+    await fetch("/auth/logout", { method: "POST" });
+    window.location.href = "/login";
+}
+</script>
+
+</body>
+</html>

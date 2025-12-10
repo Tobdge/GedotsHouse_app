@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gestión de Usuarios</h1>
+            <a href="/crear" class="btn-create">Nuevo Usuario</a>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Estado</th>
+                        <th>Verificado</th>
+                        <th>Fecha de Registro</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (users.length === 0) { %>
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <strong>No hay usuarios registrados</strong>
+                                <small>Comienza creando tu primer usuario</small>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                    <% users.forEach(user => { %>
+                    <tr>
+                        <td><span class="id-badge">#<%= user.id %></span></td>
+                        <td><%= user.email %></td>
+                        <td>
+                            <span class="badge <%= user.is_active ? 'badge-success' : 'badge-danger' %>">
+                                <%= user.is_active ? "Activo" : "Inactivo" %>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge <%= user.email_verified_at ? 'badge-success' : 'badge-warning' %>">
+                                <%= user.email_verified_at ? "Verificado" : "Pendiente" %>
+                            </span>
+                        </td>
+                        <td><%= user.created_at.toLocaleString() %></td>
+                        <td>
+                            <div class="actions">
+                                <a href="/editar/<%= user.id %>" class="btn-action btn-edit">Editar</a>
+                                <a href="/eliminar/<%= user.id %>" class="btn-action btn-delete" 
+                                   onclick="return confirm('¿Eliminar usuario?')">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

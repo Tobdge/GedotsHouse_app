@@ -1,0 +1,44 @@
+
+<%- include("../partials/admin_header", { 
+    user,
+    active: "products",
+    pageTitle: "Productos",
+    showAddButton: true,
+    addButtonText: "Nuevo Producto",
+    addButtonLink: "/admin/products/create"
+}) %>
+
+<div class="admin-content">
+    
+    <h2 class="page-title">Productos</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>SKU</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(p => { %>
+            <tr>
+                <td><%= p.id %></td>
+                <td>
+                    <img src="<%= p.image_url %>" width="60">
+                </td>
+                <td><%= p.name %></td>
+                <td><%= p.sku %></td>
+                <td>$<%= p.price %></td>
+                <td><%= p.stock_quantity %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+</div>
+
+<%- include("../partials/admin_footer", { scripts: "" }) %>

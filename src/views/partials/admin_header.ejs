@@ -1,0 +1,106 @@
+<!-- ====================================
+     ADMIN HEADER + SIDEBAR
+======================================= -->
+<link rel="stylesheet" href="/css/admin-panel.css">
+
+<div class="admin-container">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">🏠</div>
+            <div class="sidebar-logo-text">
+                <h1>GedotsHouse</h1>
+                <p>Admin Panel</p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-section-title">Principal</div>
+
+            <a href="/admin/dashboard" class="nav-item <%= active === 'dashboard' ? 'active' : '' %>">
+                <span class="nav-item-icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+
+            <div class="nav-section-title">E-commerce</div>
+
+            <a href="/admin/products" class="nav-item <%= active === 'products' ? 'active' : '' %>">
+                <span class="nav-item-icon">📦</span>
+                <span>Productos</span>
+            </a>
+
+            <a href="/admin/categories" class="nav-item <%= active === 'categories' ? 'active' : '' %>">
+                <span class="nav-item-icon">🗂️</span>
+                <span>Categorías</span>
+            </a>
+
+            <a href="/admin/orders" class="nav-item <%= active === 'orders' ? 'active' : '' %>">
+                <span class="nav-item-icon">🛒</span>
+                <span>Órdenes</span>
+            </a>
+
+            <a href="/admin/coupons" class="nav-item <%= active === 'coupons' ? 'active' : '' %>">
+                <span class="nav-item-icon">🎟️</span>
+                <span>Cupones</span>
+            </a>
+
+            <div class="nav-section-title">Usuarios</div>
+
+            <a href="/admin/users" class="nav-item <%= active === 'users' ? 'active' : '' %>">
+                <span class="nav-item-icon">👥</span>
+                <span>Clientes</span>
+            </a>
+
+            <a href="/admin/reviews" class="nav-item <%= active === 'reviews' ? 'active' : '' %>">
+                <span class="nav-item-icon">⭐</span>
+                <span>Reseñas</span>
+            </a>
+
+            <div class="nav-section-title">Configuración</div>
+
+            <a href="/admin/settings" class="nav-item <%= active === 'settings' ? 'active' : '' %>">
+                <span class="nav-item-icon">⚙️</span>
+                <span>Configuración</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-user">
+            <div class="user-card">
+                <div class="user-avatar">
+                    <%= user.email.split('@')[0].substring(0, 2).toUpperCase() %>
+                </div>
+                <div class="user-info">
+                    <h4><%= user.email %></h4>
+                    <p><%= user.role %></p>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <main class="admin-main">
+
+        <!-- HEADER (TOP BAR) -->
+        <header class="admin-header">
+            <div>
+                <h2><%= pageTitle %></h2>
+                <div class="header-breadcrumb">
+                    <span>Home</span>
+                    <span>/</span>
+                    <span><%= pageTitle %></span>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <% if (showAddButton) { %>
+                <button class="quick-action-btn" onclick="window.location.href='<%= addButtonLink %>'">
+                    ➕ <%= addButtonText %>
+                </button>
+                <% } %>
+            </div>
+        </header>

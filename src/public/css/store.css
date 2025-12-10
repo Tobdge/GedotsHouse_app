@@ -1,0 +1,2150 @@
+/* ============================================
+   GEDOTSHOUSE - EPIC STORE CSS
+   La Tienda Online Más Espectacular del Mundo
+   Psicología del Color + UX Premium
+   ============================================ */
+
+:root {
+  /* Paleta de Color Psicológica para E-commerce */
+  /* Verde Esmeralda: Confianza, Crecimiento, Conversión */
+  --primary-emerald: #10B981;
+  --primary-emerald-dark: #059669;
+  --primary-emerald-light: #34D399;
+  
+  /* Azul Profundo: Profesionalismo, Seguridad */
+  --secondary-navy: #1E3A8A;
+  --secondary-blue: #3B82F6;
+  --secondary-sky: #0EA5E9;
+  
+  /* Naranja Energético: Urgencia, Acción, CTA */
+  --accent-orange: #F97316;
+  --accent-coral: #FB923C;
+  
+  /* Púrpura Premium: Lujo, Exclusividad */
+  --accent-purple: #8B5CF6;
+  --accent-violet: #A78BFA;
+  
+  /* Neutrales Sofisticados */
+  --bg-white: #FFFFFF;
+  --bg-gray-50: #F9FAFB;
+  --bg-gray-100: #F3F4F6;
+  --bg-gray-800: #1F2937;
+  --bg-gray-900: #111827;
+  
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+  
+  /* Estados Psicológicos */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --info: #3B82F6;
+  
+  /* Gradientes Premium */
+  --gradient-emerald: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --gradient-ocean: linear-gradient(135deg, #0EA5E9 0%, #1E3A8A 100%);
+  --gradient-sunset: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+  --gradient-royal: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+  --gradient-mesh: radial-gradient(at 40% 20%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+                   radial-gradient(at 80% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                   radial-gradient(at 0% 50%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+  
+  /* Sombras Profundas con Jerarquía */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-glow-emerald: 0 0 20px rgba(16, 185, 129, 0.5);
+  --shadow-glow-purple: 0 0 20px rgba(139, 92, 246, 0.5);
+  
+  /* Transiciones Fluidas */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Espaciado Consistente */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  
+  /* Radius Modernos */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* ============================================
+   RESET AVANZADO
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  background: var(--bg-white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Scrollbar Ultra Premium */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-emerald);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg-gray-100);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-emerald-dark);
+  box-shadow: var(--shadow-glow-emerald);
+}
+
+/* ============================================
+   NAVBAR ÉPICA - Premium Sticky
+   ============================================ */
+.epic-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.epic-navbar.scrolled {
+  box-shadow: var(--shadow-lg);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.nav-mega-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-6);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* Logo Ultra Moderno */
+.epic-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  position: relative;
+}
+
+.logo-symbol {
+  width: 56px;
+  height: 56px;
+  background: var(--gradient-emerald);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-bounce);
+}
+
+.logo-symbol::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+.epic-logo:hover .logo-symbol {
+  transform: rotate(-10deg) scale(1.1);
+  box-shadow: var(--shadow-glow-emerald), var(--shadow-xl);
+}
+
+.logo-text h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: var(--gradient-emerald);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.logo-tagline {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Search Bar Ultra Premium */
+.epic-search {
+  max-width: 600px;
+  position: relative;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-epic {
+  width: 100%;
+  padding: var(--space-4) var(--space-6) var(--space-4) 3.5rem;
+  background: var(--bg-gray-50);
+  border: 2px solid transparent;
+  border-radius: var(--radius-full);
+  font-size: 0.9375rem;
+  transition: all var(--transition-base);
+  font-weight: 500;
+}
+
+.search-input-epic:focus {
+  outline: none;
+  background: white;
+  border-color: var(--primary-emerald);
+  box-shadow: var(--shadow-glow-emerald), var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.search-icon-epic {
+  position: absolute;
+  left: var(--space-5);
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: all var(--transition-base);
+}
+
+.search-input-epic:focus ~ .search-icon-epic {
+  color: var(--primary-emerald);
+  transform: scale(1.1);
+}
+
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2xl);
+  max-height: 400px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-base);
+}
+
+.search-input-epic:focus + .search-suggestions,
+.search-suggestions:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.suggestion-item {
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 1px solid var(--bg-gray-100);
+}
+
+.suggestion-item:hover {
+  background: var(--bg-gray-50);
+  padding-left: var(--space-5);
+}
+
+/* Nav Actions */
+.nav-actions-epic {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nav-icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-gray-50);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-base);
+  font-size: 1.25rem;
+}
+
+.nav-icon-btn:hover {
+  background: var(--primary-emerald);
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-glow-emerald);
+}
+
+.nav-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  background: var(--gradient-sunset);
+  color: white;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-md);
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.btn-epic-primary {
+  padding: var(--space-3) var(--space-6);
+  background: var(--gradient-emerald);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-epic-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow-emerald), var(--shadow-xl);
+}
+
+/* ============================================
+   HERO ÉPICO - Conversión Máxima
+   ============================================ */
+.epic-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F9FAFB 0%, #EFF6FF 100%);
+}
+
+.hero-mesh-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-mesh);
+  opacity: 0.6;
+  animation: meshMove 20s ease-in-out infinite;
+}
+
+@keyframes meshMove {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.05); }
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+
+.hero-content-grid {
+  position: relative;
+  z-index: 1;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--space-20) var(--space-6);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.hero-text-section {
+  animation: fadeSlideUp 1s ease;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--primary-emerald);
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+  backdrop-filter: blur(10px);
+  animation: badgeFloat 3s ease-in-out infinite;
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.hero-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-6);
+  color: var(--text-primary);
+}
+
+.gradient-text {
+  background: var(--gradient-emerald);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: 1.375rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+.btn-hero-primary {
+  padding: var(--space-4) var(--space-8);
+  background: var(--gradient-emerald);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 1.125rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-glow-emerald), var(--shadow-2xl);
+}
+
+.btn-hero-secondary {
+  padding: var(--space-4) var(--space-8);
+  background: white;
+  color: var(--primary-emerald);
+  border: 2px solid var(--primary-emerald);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-hero-secondary:hover {
+  background: var(--primary-emerald);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-stats {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.stat-block {
+  text-align: left;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--gradient-emerald);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.hero-visual-section {
+  position: relative;
+  animation: fadeSlideRight 1s ease 0.3s both;
+}
+
+@keyframes fadeSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-product-showcase {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.showcase-card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-emerald);
+  transform: scaleX(0);
+  transition: transform var(--transition-base);
+}
+
+.showcase-card:hover::before {
+  transform: scaleX(1);
+}
+
+.showcase-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.showcase-card.large {
+  grid-column: span 2;
+}
+
+.card-badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  background: var(--gradient-sunset);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+
+.card-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-emerald);
+}
+
+/* ============================================
+   TRUST INDICATORS
+   ============================================ */
+.trust-bar {
+  background: white;
+  border-top: 1px solid var(--bg-gray-100);
+  border-bottom: 1px solid var(--bg-gray-100);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.trust-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-8);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.trust-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--gradient-emerald);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  box-shadow: var(--shadow-lg);
+  flex-shrink: 0;
+}
+
+.trust-text h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.trust-text p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   CATEGORIES - Ultra Visual
+   ============================================ */
+.categories-epic {
+  padding: var(--space-20) var(--space-6);
+  background: var(--bg-white);
+}
+
+.section-header-epic {
+  max-width: 1600px;
+  margin: 0 auto var(--space-16);
+  text-align: center;
+}
+
+.section-badge {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-4);
+}
+
+.section-title-epic {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle-epic {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.categories-grid-epic {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.category-card-epic {
+  position: relative;
+  background: white;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.category-card-epic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-emerald);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.category-card-epic:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-2xl);
+  border-color: var(--primary-emerald);
+}
+
+.category-card-epic:hover::before {
+  opacity: 0.05;
+}
+
+.category-icon-epic {
+  width: 80px;
+  height: 80px;
+  background: var(--bg-gray-50);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin-bottom: var(--space-6);
+  transition: all var(--transition-bounce);
+  position: relative;
+  z-index: 1;
+}
+
+.category-card-epic:hover .category-icon-epic {
+  background: var(--gradient-emerald);
+  transform: rotate(-10deg) scale(1.1);
+  box-shadow: var(--shadow-glow-emerald);
+}
+
+.category-content {
+  position: relative;
+  z-index: 1;
+}
+
+.category-card-epic h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: var(--space-3);
+}
+
+.category-card-epic p {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+.category-count {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-gray-100);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ============================================
+   PRODUCTS - Grid Premium
+   ============================================ */
+.products-epic {
+  padding: var(--space-20) var(--space-6);
+  background: var(--bg-gray-50);
+}
+
+.products-header {
+  max-width: 1600px;
+  margin: 0 auto var(--space-12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.filter-tabs-epic {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.filter-tab-epic {
+  padding: var(--space-3) var(--space-6);
+  background: white;
+  border: 2px solid var(--bg-gray-100);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  color: var(--text-secondary);
+}
+
+.filter-tab-epic:hover {
+  border-color: var(--primary-emerald);
+  color: var(--primary-emerald);
+  transform: translateY(-2px);
+}
+
+.filter-tab-epic.active {
+  background: var(--gradient-emerald);
+  border-color: var(--primary-emerald);
+  color: white;
+  box-shadow: var(--shadow-glow-emerald);
+}
+
+.sort-dropdown {
+  position: relative;
+}
+
+.sort-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: white;
+  border: 2px solid var(--bg-gray-200);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.sort-btn:hover {
+  border-color: var(--primary-emerald);
+  box-shadow: var(--shadow-md);
+}
+
+.products-grid-epic {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-8);
+}
+
+/* ============================================
+   PRODUCT CARD - Premium con Micro-interacciones
+   ============================================ */
+.product-card-epic {
+  background: white;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+}
+
+.product-card-epic:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-2xl);
+  border-color: var(--primary-emerald);
+}
+
+.product-image-container {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: var(--bg-gray-50);
+  overflow: hidden;
+}
+
+.product-image-epic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.product-card-epic:hover .product-image-epic {
+  transform: scale(1.08);
+}
+
+.product-badges {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.badge-new {
+  padding: var(--space-2) var(--space-3);
+  background: var(--gradient-emerald);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-lg);
+}
+
+.badge-sale {
+  padding: var(--space-2) var(--space-3);
+  background: var(--gradient-sunset);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-lg);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.wishlist-btn-epic {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  z-index: 10;
+  box-shadow: var(--shadow-md);
+}
+
+.wishlist-btn-epic:hover,
+.wishlist-btn-epic.active {
+  background: var(--danger);
+  color: white;
+  transform: scale(1.15);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+.quick-view-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.product-card-epic:hover .quick-view-overlay {
+  opacity: 1;
+}
+
+.btn-quick-view {
+  padding: var(--space-3) var(--space-6);
+  background: white;
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+}
+
+.product-card-epic:hover .btn-quick-view {
+  transform: translateY(0);
+}
+
+.btn-quick-view:hover {
+  background: var(--primary-emerald);
+  color: white;
+  box-shadow: var(--shadow-xl);
+}
+
+.product-info-epic {
+  padding: var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-category-tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-3);
+  width: fit-content;
+}
+
+.product-name-epic {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-rating-epic {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.stars-epic {
+  display: flex;
+  gap: 2px;
+  color: #FBBF24;
+  font-size: 0.875rem;
+}
+
+.reviews-count {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.product-description-epic {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-features-epic {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.feature-tag-epic {
+  padding: var(--space-1) var(--space-2);
+  background: var(--bg-gray-100);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.product-footer-epic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--bg-gray-100);
+  margin-top: auto;
+}
+
+.price-section-epic {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.price-current-epic {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--primary-emerald);
+  line-height: 1;
+}
+
+.price-original-epic {
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-weight: 600;
+}
+
+.btn-add-to-cart-epic {
+  padding: var(--space-3) var(--space-5);
+  background: var(--gradient-emerald);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-add-to-cart-epic:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-glow-emerald), var(--shadow-xl);
+}
+
+.btn-add-to-cart-epic:active {
+  transform: scale(0.98);
+}
+
+/* ============================================
+   CART PAGE - Ultra Premium
+   ============================================ */
+.epic-cart-page {
+  min-height: 100vh;
+  background: var(--bg-gray-50);
+  padding: var(--space-12) var(--space-6);
+}
+
+.cart-mega-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.cart-items-section-epic {
+  background: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.cart-header-epic {
+  padding: var(--space-8);
+  border-bottom: 2px solid var(--bg-gray-100);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+.cart-title-epic {
+  font-size: 2rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.cart-icon-epic {
+  font-size: 2.5rem;
+}
+
+.cart-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.cart-items-list-epic {
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+/* Cart Item Ultra Premium */
+.cart-item-epic {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  border-bottom: 2px solid var(--bg-gray-100);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.cart-item-epic:hover {
+  background: var(--bg-gray-50);
+}
+
+.cart-item-image-epic {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--bg-gray-100);
+}
+
+.cart-item-image-epic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.cart-item-epic:hover .cart-item-image-epic img {
+  transform: scale(1.1);
+}
+
+.stock-indicator {
+  position: absolute;
+  bottom: var(--space-2);
+  left: var(--space-2);
+  right: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: rgba(239, 68, 68, 0.95);
+  backdrop-filter: blur(10px);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.cart-item-details-epic {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.item-header-epic {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.item-category-epic {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.item-name-epic {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+  line-height: 1.4;
+}
+
+.item-sku-epic {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+.btn-remove-epic {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: 2px solid var(--bg-gray-200);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  transition: all var(--transition-base);
+}
+
+.btn-remove-epic:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--danger);
+  color: var(--danger);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.item-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--bg-gray-100);
+}
+
+.price-display-epic {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.current-price-epic {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--primary-emerald);
+  line-height: 1;
+}
+
+.original-price-epic {
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-weight: 600;
+}
+
+.quantity-controls-epic {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 2px solid var(--bg-gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.qty-btn-epic {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.qty-btn-epic:hover:not(:disabled) {
+  background: var(--primary-emerald);
+  color: white;
+}
+
+.qty-btn-epic:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.qty-display-epic {
+  min-width: 60px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  background: var(--bg-gray-50);
+  border-left: 2px solid var(--bg-gray-200);
+  border-right: 2px solid var(--bg-gray-200);
+}
+
+.subtotal-display-epic {
+  text-align: right;
+}
+
+.subtotal-label-epic {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.subtotal-amount-epic {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+/* Empty Cart State */
+.empty-cart-epic {
+  text-align: center;
+  padding: var(--space-20) var(--space-6);
+  background: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.empty-icon-epic {
+  font-size: 8rem;
+  opacity: 0.5;
+  margin-bottom: var(--space-6);
+  animation: float 3s ease-in-out infinite;
+}
+
+.empty-cart-epic h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: var(--space-4);
+}
+
+.empty-cart-epic p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+/* Summary Card Ultra Premium */
+.cart-summary-epic {
+  position: sticky;
+  top: var(--space-6);
+  background: white;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-2xl);
+  border: 2px solid var(--primary-emerald);
+}
+
+.summary-title-epic {
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--bg-gray-100);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.summary-value {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.discount-row {
+  color: var(--success);
+}
+
+.summary-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--bg-gray-200), transparent);
+  margin: var(--space-4) 0;
+}
+
+.summary-total-epic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5);
+  background: var(--bg-gray-50);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-6);
+}
+
+.total-label-epic {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.total-amount-epic {
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: var(--gradient-emerald);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.btn-checkout-epic {
+  width: 100%;
+  padding: var(--space-5);
+  background: var(--gradient-emerald);
+  color: white;
+  border: none;
+  border-radius: var(--radius-xl);
+  font-size: 1.25rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-xl);
+  transition: all var(--transition-base);
+  margin-bottom: var(--space-6);
+}
+
+.btn-checkout-epic:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow-emerald), var(--shadow-2xl);
+}
+
+.security-badges-epic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--bg-gray-100);
+}
+
+.security-badge {
+  text-align: center;
+}
+
+.security-icon-epic {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-2);
+}
+
+.security-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ============================================
+   FOOTER EPIC
+   ============================================ */
+.epic-footer {
+  background: var(--bg-gray-900);
+  color: white;
+  padding: var(--space-20) var(--space-6) var(--space-8);
+  margin-top: var(--space-20);
+}
+
+.footer-mega-grid {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: var(--space-12);
+  margin-bottom: var(--space-12);
+}
+
+.footer-brand-section h3 {
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin-bottom: var(--space-4);
+  background: var(--gradient-emerald);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-brand-section p {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin-bottom: var(--space-6);
+}
+
+.social-links-epic {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.social-icon-epic {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.social-icon-epic:hover {
+  background: var(--gradient-emerald);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow-emerald);
+}
+
+.footer-section h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: var(--space-5);
+  color: white;
+}
+
+.footer-section a {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.footer-section a:hover {
+  color: var(--primary-emerald);
+  padding-left: var(--space-2);
+}
+
+.footer-bottom {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.footer-bottom p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   LOADING & ANIMATIONS
+   ============================================ */
+.loading-overlay-epic {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  z-index: 10000;
+}
+
+.spinner-epic {
+  width: 64px;
+  height: 64px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--primary-emerald);
+  border-radius: var(--radius-full);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1400px) {
+  .hero-content-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+  }
+  
+  .cart-mega-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-mega-container {
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+  }
+  
+  .epic-search {
+    grid-column: 1 / -1;
+  }
+  
+  .products-grid-epic {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  
+  .cart-item-epic {
+    grid-template-columns: 120px 1fr;
+    gap: var(--space-4);
+  }
+  
+  .cart-item-image-epic {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content-grid {
+    padding: var(--space-12) var(--space-4);
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-cta-group {
+    flex-direction: column;
+  }
+  
+  .categories-grid-epic,
+  .products-grid-epic {
+    grid-template-columns: 1fr;
+  }
+  
+  .cart-item-epic {
+    grid-template-columns: 1fr;
+  }
+  
+  .item-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .footer-mega-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.font-bold { font-weight: 700; }
+.font-black { font-weight: 900; }
+.uppercase { text-transform: uppercase; }
+.hidden { display: none; }
+.visible { display: block; }
+
+.mt-4 { margin-top: var(--space-4); }
+.mt-8 { margin-top: var(--space-8); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-8 { margin-bottom: var(--space-8); }
+
+.hover-lift { transition: transform var(--transition-base); }
+.hover-lift:hover { transform: translateY(-8px); }
+
+/* SEO & Performance Enhancements */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}
+
+/* Print Styles */
+@media print {
+  .epic-navbar,
+  .epic-footer,
+  .btn-add-to-cart-epic,
+  .wishlist-btn-epic {
+    display: none;
+  }
+}
+
+
+/* ============================================================
+   CHECKOUT - EPIC UI V1
+   GedotsHouse - Pago Premium en 3 clics
+   ============================================================ */
+
+.checkout-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.checkout-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    background: var(--gradient-emerald);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* GRID PRINCIPAL */
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 2.5rem;
+}
+
+/* ============================================================
+   FORMULARIO
+   ============================================================ */
+.checkout-form {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+    border: 2px solid var(--bg-gray-100);
+}
+
+.checkout-section {
+    margin-bottom: 2.5rem;
+}
+
+.checkout-section h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.input-epic {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1.2rem;
+    background: var(--bg-gray-50);
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+}
+
+.input-epic:focus {
+    background: white;
+    border-color: var(--primary-emerald);
+    box-shadow: var(--shadow-glow-emerald);
+    outline: none;
+}
+
+/* ============================================================
+   OPCIONES DE PAGO
+   ============================================================ */
+.payment-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: var(--bg-gray-50);
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--bg-gray-200);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--transition-base);
+}
+
+.payment-option:hover {
+    transform: scale(1.02);
+    border-color: var(--primary-emerald);
+    box-shadow: var(--shadow-md);
+}
+
+.payment-option input {
+    margin-right: 0.75rem;
+}
+
+/* ============================================================
+   RESUMEN DEL PEDIDO
+   ============================================================ */
+.checkout-summary {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-2xl);
+    border: 2px solid var(--primary-emerald);
+    box-shadow: var(--shadow-2xl);
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+}
+
+.checkout-summary h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.checkout-summary ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.checkout-summary li {
+    background: var(--bg-gray-50);
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    border: 1px solid var(--bg-gray-100);
+}
+
+/* ============================================================
+   BOTÓN PRINCIPAL
+   ============================================================ */
+.btn-checkout {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--gradient-emerald);
+    border: none;
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-bounce);
+}
+
+.btn-checkout:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow-emerald), var(--shadow-2xl);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        position: relative;
+        top: 0;
+    }
+}
+
+.soldout-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #e60000;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.btn-disabled {
+    background: #999 !important;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+}
+
+/* ============================================================
+   CATEGORIES HORIZONTAL SCROLLER — PREMIUM DESIGN
+   ============================================================ */
+
+
+.categories-horizontal {
+    padding: var(--space-20) var(--space-6);
+    overflow: hidden;
+}
+
+.categories-scroll {
+    display: flex;
+    gap: var(--space-4);
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+
+    /* 🔥 ESTA ES LA LÍNEA QUE FALTABA */
+    overflow-x: auto;
+}
+
+
+/* ===== Scrollbar visible y premium ===== */
+
+.categories-scroll::-webkit-scrollbar {
+    height: 12px;
+}
+
+.categories-scroll::-webkit-scrollbar-track {
+    background: var(--bg-gray-100);
+    border-radius: var(--radius-full);
+}
+
+.categories-scroll::-webkit-scrollbar-thumb {
+    background: var(--primary-emerald);
+    border-radius: var(--radius-full);
+    border: 3px solid var(--bg-gray-100);
+    box-shadow: 0 0 6px rgba(16,185,129,0.5);
+}
+
+.categories-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-emerald-dark);
+}
+
+/* Tarjetas (chips) */
+.category-chip {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.08));
+    border: 2px solid var(--bg-gray-200);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    min-width: 280px;
+    text-decoration: none;
+    transition: all var(--transition-bounce);
+}
+
+.category-chip:hover {
+    box-shadow: var(--shadow-2xl);
+    border-color: var(--primary-emerald);
+    background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(59,130,246,0.15));
+}
+
+.chip-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-gray-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    color: var(--primary-emerald);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.chip-info h3 {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.chip-info span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}

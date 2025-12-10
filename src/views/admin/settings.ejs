@@ -1,0 +1,23 @@
+<%- include("../partials/admin_header", { 
+    user,
+    active: 'settings',
+    pageTitle: "Configuración",
+    showAddButton: false
+}) %>
+
+<div class="admin-content">
+
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">⚙️ Configuración del Sistema</h3>
+        </div>
+
+        <p style="color:#b8b8d1;">
+            Aquí podrás configurar opciones globales del sistema en futuras versiones.
+        </p>
+
+    </div>
+
+</div>
+
+<%- include("../partials/admin_footer", { scripts: "" }) %>

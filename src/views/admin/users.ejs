@@ -1,0 +1,51 @@
+<%- include("../partials/admin_header", { 
+    user, 
+    active: 'users',
+    pageTitle: "Usuarios",
+    showAddButton: false,
+    addButtonText: "",
+    addButtonLink: ""
+}) %>
+
+<div class="admin-content">
+
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">👥 Usuarios Registrados</h3>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Activo</th>
+                        <th>Registrado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(u => { %>
+                        <tr>
+                            <td><%= u.id %></td>
+                            <td><%= u.email %></td>
+                            <td><%= u.role %></td>
+                            <td>
+                                <% if (u.is_active) { %>
+                                    <span class="table-badge badge-success">Activo</span>
+                                <% } else { %>
+                                    <span class="table-badge badge-danger">Inactivo</span>
+                                <% } %>
+                            </td>
+                            <td><%= u.created_at.toLocaleString() %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<%- include("../partials/admin_footer", { scripts: "" }) %>

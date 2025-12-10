@@ -1,0 +1,71 @@
+<%- include("../partials/admin_header", { 
+    user, 
+    active: 'coupons',
+    pageTitle: "Cupones",
+    showAddButton: false,
+
+}) %>
+<div class="admin-content">
+
+    <div class="content-card">
+        
+        <div class="card-header">
+            <h3 class="card-title">🎟️ Cupones</h3>
+            <a href="/admin/coupons/create" class="btn btn-primary">➕ Crear Cupón</a>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th>Usos</th>
+                        <th>Válido hasta</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% coupons.forEach(c => { %>
+                        <tr>
+                            <td><strong><%= c.code %></strong></td>
+
+                            <td>
+                                <% if (c.discount_type === 'percentage') { %>
+                                    Porcentaje
+                                <% } else { %>
+                                    Fijo
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <% if (c.discount_type === 'percentage') { %>
+                                    <%= c.discount_value %>%
+                                <% } else { %>
+                                    $<%= c.discount_value %>
+                                <% } %>
+                            </td>
+
+                            <td><%= c.usage_count %> / <%= c.usage_limit || '∞' %></td>
+
+                            <td><%= c.valid_until.toLocaleString("es-MX") %></td>
+
+                            <td>
+                                <% if (c.is_active) { %>
+                                    <span class="table-badge badge-success">Activo</span>
+                                <% } else { %>
+                                    <span class="table-badge badge-danger">Inactivo</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<%- include("../partials/admin_footer", { scripts: "" }) %>

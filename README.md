@@ -1,76 +1,116 @@
-# Proyecto: DBGEDOTS
+# Proyecto: DBGEDOTS — GedotsHouse E-Commerce
 
-## Descripción
-Aplicación base Node.js + Express + MySQL que incluye conexión mediante middleware, creación de usuario propio de base de datos y estructura modular para apliación.
+Aplicación Node.js + Express + MySQL diseñada como base para un sistema de comercio electrónico orientado a domótica inteligente. Incluye autenticación, catálogo, carrito, órdenes, configuración del sitio y estructura profesional completamente modular.
 
-## Instalación de módulos
+---
 
-Ejecutar en la terminal:
+# 1. Requisitos Previos
+
+Antes de instalar el proyecto, asegúrate de tener instalado:
+
+- Node.js v16 o superior
+- npm
+- MySQL 5.7 u 8+
+- phpMyAdmin (opcional)
+
+---
+
+# 2. Instalación de dependencias
+
+En la carpeta raíz del proyecto ejecutar:
 
 npm install
 
+Esto instalará todas las dependencias declaradas en package.json.
 
-## Creación de la base de datos
+---
 
-1. Abrir **phpMyAdmin**.
-2. Ejecutar el script `db/basedatos.sql`.
-3. Verificar que se haya creado:
-   - Base de datos: `dbgedots`
-   - Usuario: `dbgedots_user`
-   - Contraseña: `123456`
-4. Confirmar que la tabla `usuarios` existe.
+# 3. Configuración de la Base de Datos
+
+El proyecto incluye la base de datos completa con todos los módulos necesarios para operar.
+
+## Paso 1: Abrir phpMyAdmin
+
+Ingresar a:
+
+http://localhost/phpmyadmin
+
+## Paso 2: Importar la BD
+
+Ejecutar en la pestaña SQL el archivo:
+
+db/bddgedots.sql
+
+Este script:
+
+- Crea la base de datos `dbgedots`
+- Crea el usuario MySQL `dbgedots_user`
+- Asigna permisos
+- Crea todas las tablas del sistema
+- Inserta los datos iniciales
+- Crea el usuario administrador
+- Habilita configuraciones del sitio
+
+---
+
+# 4. Credenciales MySQL creadas automáticamente
+
+Base de datos:
+
+- Nombre: dbgedots  
+- Usuario: dbgedots_user  
+- Contraseña: 123456  
+- Host: localhost  
+- Motor: InnoDB  
+
+El script fuerza mysql_native_password para compatibilidad total con Node.js.
+
+---
+
+# 5. Usuario administrador incluido
+
+El script crea automáticamente este usuario:
+
+- Email: admin@gedotshouse.com
+- Contraseña: admin123
+
+---
+
+# 6. Ejecutar el servidor
+
+En la carpeta raíz ejecutar:
+
+npx nodemon app.js
+
+Si todo fue instalado correctamente, aparecerá:
+
+Conexión exitosa a la base de datos ‘dbgedots’
+
+---
 
 
+# 8. Variables de entorno recomendadas (.env)
 
-## Ejecución del servidor
+Crear un archivo `.env`:
 
-1. En la terminal, ejecutar:
+PORT=8085
+JWT_SECRET=valor_seguro_aqui
+DB_HOST=localhost
+DB_USER=dbgedots_user
+DB_PASS=123456
+DB_NAME=dbgedots
 
-npx nodemon App.js
+---
 
+# 9. Importante
 
-2. Abrir el navegador y visitar:
+El archivo `bddgedots.sql` incluido en este repositorio es suficiente para que cualquier persona pueda instalar la base de datos en su entorno local sin necesidad de configuraciones adicionales.
 
-http://localhost:8085
+El proyecto está listo para ejecutarse después de:
 
+1. Instalar dependencias  
+2. Importar la base  
+3. Ejecutar nodemon  
 
-3. Deberías ver:
+---
 
-Conexión exitosa a la base de datos 'dbgedots'
-
-
-
-
-## Dependencias utilizadas
-
-| Paquete                  | Descripción                       |
-|--------------------------|-----------------------------------|
-| **express**              | Framework para servidor web       |
-| **mysql**                | Cliente para conexión MySQL       |
-| **express-myconnection** | Middleware de conexión            |
-| **morgan**               | Logger de peticiones              |
-| **nodemon**              | Reinicio automático en desarrollo |
-
-
-
-## Estructura del proyecto
-
-NODEE/
-│
-├── db/
-│   ├── bds7a.sql
-│   ├── dbgedots.mwb
-│
-├── node_modules/
-│
-├── src/
-│   ├── controllers/
-│   ├── public/
-│   ├── routes/
-│   └── views/partials/
-│
-├── .gitignore
-├── app.js
-├── package-lock.json
-├── package.json
-└── README.md
